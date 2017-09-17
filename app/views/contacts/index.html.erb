@@ -1,11 +1,10 @@
 <h1>Your Contacts</h1>
-
-<% @contacts.each do |contact| %>
-  <div>
-    <h2><%= link_to "#{contact.full_name}", "/contacts/#{contact.id}" %></h2>
-    <h3>Email: <%= contact.email %></h3>
-    <h3>Phone: <%= contact.phone_number %></h3>
-    <h3>Bio: <%= contact.bio %></h3>
-  </div>
-  <br>
+  <% @contacts.each do |contact| %>
+      <div>
+        <h2><%= link_to "#{contact.full_name}", "/contacts/#{contact.id}" %></h2>
+        <h3>Email: <%= contact.email %></h3>
+        <h3>Phone: <%= contact.phone_number %></h3>
+        <h3>Bio: <%= contact.bio %></h3>
+      </div>
+      <br>
 <% end %>

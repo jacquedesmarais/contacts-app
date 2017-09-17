@@ -1,7 +1,11 @@
 class ContactsController < ApplicationController
 
 def index
-  @contacts = Contact.all
+  if current_user
+    @contacts = current_user.contacts
+  else
+    @contacts = Contact.all
+    end
   search_term = params[:search_term]
   if search_term
     @contacts = @contacts.where("first_name iLIKE ? OR last_name iLIKE ? OR email iLIKE ?", "%#{search_term}%", "%#{search_term}%", "%#{search_term}%")
@@ -23,7 +27,8 @@ def create
                         middle_name: params[:middle_name],
                         email: params[:email], 
                         phone_number: params[:phone_number],
-                        bio: params[:bio]
+                        bio: params[:bio],
+                        user_id: current_user.id
                         )
   contact.save
   flash[:success] = "Contact created."
@@ -42,7 +47,8 @@ def update
                             middle_name: params[:middle_name],
                             email: params[:email], 
                             phone_number: params[:phone_number],
-                            bio: params[:bio]
+                            bio: params[:bio],
+                            user_id: current_user.id
                             )
   contact.save
   flash[:success] = "Contact updated."
