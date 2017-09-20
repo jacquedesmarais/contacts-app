@@ -6,9 +6,14 @@ def index
   else
     @contacts = Contact.all
     end
+
   search_term = params[:search_term]
+  category_id = params[:category]
   if search_term
     @contacts = @contacts.where("first_name iLIKE ? OR last_name iLIKE ? OR email iLIKE ?", "%#{search_term}%", "%#{search_term}%", "%#{search_term}%")
+  elsif category_id
+    category = Category.find_by(id: category_id)
+    @contacts = category.contacts
   end
 end
 

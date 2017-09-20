@@ -2,6 +2,10 @@
 <h2>Email: <%= @contact.email %></h2>
 <h2>Phone: <%= @contact.phone_number %></h2>
 <h6>Updated On: <%= @contact.friendly_updated_at %></h6>
+<h4>Groups:</h4>
+<% @contact.categories.each do |category| %>
+  <%= category.name %><br>
+<% end %>
 
 <%= link_to "Edit", "/contacts/#{@contact.id}/edit" %>
 <%= link_to "Delete", "/contacts/#{@contact.id}", method: :delete %>

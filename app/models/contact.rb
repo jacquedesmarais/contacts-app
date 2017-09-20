@@ -1,5 +1,7 @@
 class Contact < ApplicationRecord
   belongs_to :user
+  has_many :category_contacts
+  has_many :categories, through: :category_contacts
 
   def friendly_updated_at
     updated_at.strftime("%b %e, %Y")
