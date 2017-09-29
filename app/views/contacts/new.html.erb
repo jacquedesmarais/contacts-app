@@ -1,28 +1,33 @@
-
 <h1>New Contact</h1>
 
-<%= form_tag "/contacts", method: :post do %>
-  <div>
-    <%= label_tag :first_name %>
-    <%= text_field_tag :first_name %>
-  </div>
-  <div>
-    <%= label_tag :middle_name %>
-    <%= text_field_tag :middle_name %>
-  </div>
-  <div>
-    <%= label_tag :last_name %>
-    <%= text_field_tag :last_name %>
-  </div>
-  <div>
-    <%= label_tag :email %>
-    <%= text_field_tag :email %>
-  </div>
-  <div>
-    <%= label_tag :phone_number %>
-    <%= text_field_tag :phone_number %>
-  </div>
+<% if @errors %>
+  <% @errors.each do |error| %>
+    <h2><%= error %></h2>
+  <% end %>
+<% end %>
 
+<%= form_tag '/contacts', method: :post do %>
+  <form>
+  <div class="form-group">
+    <label for="name">First Name: </label>
+    <input type="text" name="first_name" value="<%= @contact.first_name %>">
+  </div>
+  <div class="form-group">
+    <label for="price">Middle Name: </label>
+    <input type="text" name="middle_name" value="<%= @contact.middle_name %>">
+  </div>
+  <div>
+    <label for="description">Last Name: </label>
+    <input type="text" name="last_name" value="<%= @contact.last_name %>">   
+  </div>
+  <div>
+    <label for="description">Email: </label>
+    <input type="text" name="email" value="<%= @contact.email %>">   
+  </div>
+  <div>
+    <label for="description">Phone Number: </label>
+    <input type="text" name="phone_number" value="<%= @contact.phone_number %>">   
+  </div>
   <div>
     <%= submit_tag "Create Contact" %>
   </div>
